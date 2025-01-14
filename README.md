@@ -24,9 +24,7 @@ In this lab, we will work with Network File Shares and Permissions on Microsoft 
    - `no-access`
    - `accounting`
 
-<p>
-<img src="https://i.imgur.com/FVYalwj.png" height="80%" width="80%" alt="Lab 7"/>
-</p>
+![image](https://github.com/user-attachments/assets/70f4cb60-c509-4f8d-9788-3bc6078194ba)
 
 3. Set the following permissions for each folder:
    - **Folder:** `read-access`  
@@ -34,27 +32,29 @@ In this lab, we will work with Network File Shares and Permissions on Microsoft 
      **Permission:** `Read`  
      *(Share the folder with these settings.)*
 
-<p>
-<img src="https://i.imgur.com/dsukySe.png" height="80%" width="80%" alt="Lab 7"/>
-</p>
+![image](https://github.com/user-attachments/assets/4045f78d-54ea-44df-9bf4-52c29cd03c48)
+
+![image](https://github.com/user-attachments/assets/8152ebef-841b-464a-8a9b-5840b85e80a4)
+
+![image](https://github.com/user-attachments/assets/d7727851-a695-49aa-9ad3-e1abca2923a7)
+
+![image](https://github.com/user-attachments/assets/c7a2b05e-415d-4a6e-be41-047d6d7e8885)
+
+![image](https://github.com/user-attachments/assets/e12e2f0d-78e5-46e0-8d21-e7345620b973)
 
    - **Folder:** `write-access`  
      **Group:** `Domain Users`  
      **Permission:** `Read/Write`  
      *(Share the folder with these settings.)*
 
-<p>
-<img src="https://i.imgur.com/NZoGPBe.png" height="80%" width="80%" alt="Lab 7"/>
-</p>
+![image](https://github.com/user-attachments/assets/1a4526c9-5257-4b03-8117-fb15b565c5cf)
 
    - **Folder:** `no-access`  
      **Group:** `Domain Admins`  
      **Permission:** `Read/Write`  
      *(Share the folder with these settings.)*
 
-<p>
-<img src="https://i.imgur.com/QnljHOP.png" height="80%" width="80%" alt="Lab 7"/>
-</p>
+![image](https://github.com/user-attachments/assets/04e31115-aaaa-40d5-849a-6b7489f6b922)
 
    - **Folder:** `accounting`  
      *(Do not configure permissions yet; skip this for now.)*
@@ -64,15 +64,19 @@ In this lab, we will work with Network File Shares and Permissions on Microsoft 
 ### Step 2: Attempt to Access File Shares as a Normal User
 1. **Log into Client-1** using a normal user account (`mydomain\<someuser>`).
 2. Navigate to the shared folders:
-   - Open the **Run** dialog (`Start` → **Run** or `Windows Key + R`).
+   - Open file explorer.
    - Enter `\\dc-1` to access shared folders on DC-1.
 3. Test access to the folders:
    - Which folders can you access? 
    - Which folders can you create files in?
-  
-<p>
-<img src="https://i.imgur.com/kSVT94w.png" height="80%" width="80%" alt="Lab 7"/>
-</p>
+
+![image](https://github.com/user-attachments/assets/d1ced96e-4c81-4551-9755-b38fe1cdb609)
+
+![image](https://github.com/user-attachments/assets/eac4cc38-8519-49ce-b29c-2428514c0843)
+
+![image](https://github.com/user-attachments/assets/ad87e709-492b-414f-b0eb-5731d9b617bf)
+
+![image](https://github.com/user-attachments/assets/822c8faa-bf5d-45d5-bde1-3e6701075251)
 
 ---
 
@@ -80,9 +84,7 @@ In this lab, we will work with Network File Shares and Permissions on Microsoft 
 1. **Log into DC-1** as the domain admin account (`mydomain.com\jane_admin`).
 2. Open Active Directory and create a security group named `ACCOUNTANTS`.
 
-<p>
-<img src="https://i.imgur.com/kWtCZXi.png" height="80%" width="80%" alt="Lab 7"/>
-</p>
+![image](https://github.com/user-attachments/assets/26c7574d-fead-4c69-b2f4-368372301efc)
 
 3. Set permissions for the `accounting` folder:
    - **Folder:** `accounting`  
@@ -90,30 +92,27 @@ In this lab, we will work with Network File Shares and Permissions on Microsoft 
      **Permission:** `Read/Write`  
      *(Share the folder with these settings.)*
 
-<p>
-<img src="https://i.imgur.com/UB0vq4N.png" height="80%" width="80%" alt="Lab 7"/>
-</p>
+![image](https://github.com/user-attachments/assets/6695bf2d-045f-402e-8490-45332304292b)
 
 4. Test access as the normal user:
-   - On Client-1, while logged in as `<someuser>`, try to access the `accounting` share via `\\dc-1`.  
+   - On Client-1, while logged in as `<qaki.hof>` (or other user), try to access the `accounting` share via `\\dc-1`.  
      - **Expected Result:** Access to the folder should fail.
 
-<p>
-<img src="https://i.imgur.com/0Ky6lma.png" height="80%" width="80%" alt="Lab 7"/>
-</p>
+![image](https://github.com/user-attachments/assets/411aed0b-03d6-4046-8e2b-5a9d61783b84)
 
-5. Assign `<someuser>` to the `ACCOUNTANTS` group:
-   - On DC-1, add `<someuser>` as a member of the `ACCOUNTANTS` security group.
+5. Assign `<qaki.hof>` (or other user) to the `ACCOUNTANTS` group:
+   - On DC-1, add `<qaki.hof>` (or other user) as a member of the `ACCOUNTANTS` security group.
+   - **Sidenote:** You can add entire groups to other groups as well. If we wanted to give access to all of the domain users we would assign 'Domain Users' to the 'ACCOUNTANTS' group instead of qaki.hof. 
 
-<p>
-<img src="https://i.imgur.com/JD9aUY7.png" height="80%" width="80%" alt="Lab 7"/>
-</p>
+![image](https://github.com/user-attachments/assets/0935824a-4032-42ea-83d9-f9dd11171dcb)
 
-6. Re-test access as `<someuser>`:
-   - **Log out of Client-1** and log back in as `<someuser>`.
+![image](https://github.com/user-attachments/assets/abfed4d2-f759-40c1-8171-1df8e952814d)
+
+6. Re-test access as `<qaki.hof>`:
+   - **Log out of Client-1** and log back in as `<qaki.hof>`.
    - Try to access the `accounting` share via `\\dc-1`.
      - **Expected Result:** Access to the folder should now succeed.
-
+![image](https://github.com/user-attachments/assets/2b41e545-d81f-4ec1-838d-680877c7bb86)
 ---
 
 ## Conclusion
